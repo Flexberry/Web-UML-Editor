@@ -1,0 +1,216 @@
+body {
+  padding-top: 40px;
+}
+.jumbotron{
+	min-height: 700px;
+  height: inherit;
+  min-width: 1295px;
+  width: inherit;
+}
+.mouse {
+	background-image: url(../img/uml/mouse.png);
+  background-position: 17px 12px;
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 30px 3px;
+  border-radius: 6px 6px 6px 6px;
+}
+.class{
+  padding: 0px 0px 32px 0px;
+  background-image: url(../img/uml/class.png);
+  background-position: 20px 15px;
+  height: 50px;
+  width: 62px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 25px 0px;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 10px;
+}
+.interface {
+  padding: 0px 0px 32px 0px;
+	background-image: url(../img/uml/interface.png);
+  background-position: 20px 15px;
+  height: 50px;
+  width: 62px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 25px 0px;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 10px;
+}
+.abstract {
+  padding: 0px 0px 32px 0px;
+	background-image: url(../img/uml/abstract.png);
+  background-position: 20px 15px;
+  height: 50px;
+  width: 62px;;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 25px 0px;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 10px;
+}
+.assosiation{
+	padding: 0px 0px 20px 0px;
+  background-image: url(../img/uml/association.png);
+  background-position: 15px 23px;
+  height: 50px;
+  width: 62px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 25px 0px;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 9px;
+}
+.composition{
+	padding: 0px 0px 20px 0px;
+  background-image: url(../img/uml/composition.png);
+  background-position: 15px 23px;
+  height: 50px;
+  width: 62px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 25px 0px;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 9px;
+}
+.generalization{
+	padding: 0px 0px 19px 0px;
+  background-image: url(../img/uml/generalization.png);
+  background-position: 17px 22px;
+  height: 50px;
+  width: 62px;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 0px 0px 25px 0px;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 9px;
+}
+.uml-container{
+	
+ margin: 25px 20px 0px 10px;
+ display: inline-block;
+  width: 50px;
+ 
+}
+.paper{
+	background-image: url(../img/diagram-background.jpg);
+  display: inline-block;
+  position: absolute;
+  overflow: scroll;
+  width: 900px;
+  height: 620px;
+}
+.panel-body {
+  padding: 5px;
+}
+.selectType{
+  width: 97px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  height: 27px;
+  line-height: 30px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.myInput{
+  display: inline-block;
+  width: 110px;
+  height: 27px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 0.428571;                                                            
+  color: #555;                                                            
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0px 0px 10px 0px;                                                                                                                                                                                                                                                                                                            
+                                                                                                                          
+}
+.exportXMI {
+  font-size: 15px;  
+  line-height: 20px;   
+  margin: 0px 0px 0px 75px !important;
+  cursor:pointer;
+}
+.body-container {
+  display: inline-flex;
+}
+.uml-full-container {
+  padding: 0px 0px 0px 0px; 
+  display: inline-block;
+}
+.paper-container {
+  padding: 0px 0px 0px 0px;
+  display: inline-block;
+  width: 899px;
+  height: 600px;
+  position: inherit;
+}
+.accordion-container {
+  padding: 0px 0px 0px 0px;
+  display: inline-block;
+  float: left;
+  margin: 0px 5px 0px 7px;
+  width: 285px;
+}
+.iconClass{
+  cursor:url(../img/uml/classSmall.png),auto;
+}
+.iconAbstract{
+  cursor:url(../img/uml/abstractSmall.png),auto;
+}
+.iconInterface{
+  cursor:url(../img/uml/interfaceSmall.png),auto;
+}
+.iconAssosiation{
+   cursor:url(../img/uml/associationSmall.png),auto;
+}
+.iconComposition{
+   cursor:url(../img/uml/compositionSmall.png),auto;
+}
+.iconGenetalization{
+   cursor:url(../img/uml/generalizationSmall.png),auto;
+}
+.html-element {
+   position: absolute;  
+   z-index: 2;
+}
+.html-element button {
+   /* Enable interacting with inputs only. */
+   pointer-events: auto;   
+}
+.html-element button.delete {
+   color: white;
+   border: none;
+   background-color: #C0392B;
+   border-radius: 20px;
+   width: 15px;
+   height: 15px;
+   line-height: 15px;
+   text-align: middle;
+   position: absolute;
+   top: -15px;
+   left: -15px;
+   padding: 0;
+   margin: 0;
+   font-weight: bold;
+   cursor: pointer;
+}
+.html-element button.delete:hover {
+   width: 20px;
+   height: 20px;
+   line-height: 20px;
+}
+.element .element-tools {
+  display: none;
+  cursor: pointer
+}
+
+.element:hover .element-tools {
+  display: inline;
+}

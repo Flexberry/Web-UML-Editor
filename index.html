@@ -1,0 +1,200 @@
+<html ng-app="umlEditorApp" lang="en">
+  	<head>
+  		<title>UML-editor</title>
+  		<meta charset='utf-8'><meta http-equiv='Content-Type'>
+  		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">	    
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/stylish-portfolio.css" rel="stylesheet">
+	    <link rel="stylesheet" href="css/font-awesome.css">
+	    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	    <link rel="stylesheet" href="css/joint.css" />
+	 	<link rel="stylesheet" type="text/css" href="angular-modules/angular-notify/angular-notify.css">     	 	
+	 	<link rel="stylesheet" type="text/css" href="css/app.css">	    	    
+	    <script src="js/libs/angular.min.js"></script>	    
+	    <script src="js/libs/underscore.js"></script>	   
+		<script src="js/libs/sax.js"></script>
+		<script src="js/libs/ecore.xmi.js"></script>
+		<script src="js/libs/joint.js"></script>					 	 	
+	 	<script src="angular-modules/bootstrap-ui/ui-bootstrap-tpls-0.13.0.min.js"></script>	 	
+	 	<script src="angular-modules/angular-notify/angular-notify.js"></script>	 				 	
+  	</head>
+  	<body data-ng-controller="umlController" ng-init=""> 
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+		        <div class="container">
+		            <div class="navbar-header">		                
+		                <div class="navbar-brand">
+		                	UML редактор
+		                </div>
+		                <ul class="nav navbar-nav">
+		                	<li>
+		                		<a class="exportXMI navbar-brand" ng-click="exportXMI()" ng-href="{{url}}">
+		                	Экспорт XMI
+		                		</a>
+		                	</li>		                	
+		                </ul>             		                
+		            </div>		           
+		        </div>
+		    </div>
+    	<div class="jumbotron">       
+        	<div class="body-container">
+        		<div class="uml-full-container">
+        			<div class="uml-container">
+        				<!-- Вызов функции сброса всех условий выбора -->
+        				<button class=" btn mouse" ng-click="refreshConditions()">        				      					
+        				</button>
+        				<!-- Вызов функции сброса всех условий выбора, и объявления переменной условия выбора класса  -->
+        				<button class="btn class" ng-click="refreshConditions();classCondition=true">
+        					Class          					
+        				</button>
+        				<!-- Вызов функции сброса всех условий выбора, и объявления переменной условия выбора интерфейса  -->
+        				<button class="btn interface" ng-click="refreshConditions();interfaceCondition=true">        				Interface	
+        				</button>
+        				<!-- Вызов функции сброса всех условий выбора, и объявления переменной условия выбора абстрактого класса  -->
+        				<button class="btn abstract" ng-click="refreshConditions();abstractCondition=true">        					Abstract
+        				</button>
+        				<!-- Вызов функции сброса всех условий выбора, и объявления переменной условия выбора связи ассоциация  -->
+        				<button class="btn assosiation" ng-click="refreshConditions();associationCondition=true;referenceCondition=true">
+        					Association	
+        				</button>
+        				<!-- Вызов функции сброса всех условий выбора, и объявления переменной условия выбора связи композиция  -->
+        				<button class="btn composition" ng-click="refreshConditions();compositionCondition=true;referenceCondition=true">
+        					Composition		
+        				</button>
+        				<!-- Вызов функции сброса всех условий выбора, и объявления переменной условия выбора связи наследования -->
+        				<button class="btn generalization" ng-click="refreshConditions();generalizationCondition=true;referenceCondition=true">
+        					Generalization	
+        				</button>        				      				          				
+        			</div>
+        		</div>
+        		<div class="paper-container" ng-click ng-class="{iconClass: classCondition, iconAbstract: abstractCondition, iconInterface: interfaceCondition, iconAssosiation: associationCondition, iconComposition: compositionCondition, iconGenetalization: generalizationCondition}">
+        			<div class="paper" id="paper"></div>
+        		</div>        		
+        		<div class="clearfix"></div>
+        		<div class="accordion-container">
+	        		<accordion close-others="oneAtATime"> 
+		        		<accordion-group is-open="statusClassNameOpen ">
+						    <accordion-heading>
+						        Класс
+						        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': statusClassNameOpen, 'glyphicon-chevron-right': !statusClassNameOpen }">						        	
+						        </i>
+						    </accordion-heading>
+						    <div ng-show="showClassProperties.condition">
+						    	<a class="btn btn-link" ng-click="deleteClass()">
+								  	<i class="icon-trash"></i>		    	
+								</a>
+						    	<input type="className" class="form-control myInput"  data-ng-model="className.name"  id="field" ng-change="changeClassDetails()">
+						    	<div style="padding: 0px 0px 0px 20px;">
+						    		<label for="width">
+						    			Ширина: 
+						    			<span class="pull-right">
+						    				<span ng-bind="size.width"  class="ng-binding"></span> 
+						    			</span>
+						    		</label>
+						    		<input type="range" ng-change="changeSize()" ng-model="size.width" min="110" max="500" step="10" style="width: 140px" class="ng-valid ng-dirty">
+						    		<label for="height">
+						    			Высота: 
+						    			<span class="pull-right">
+						    				<span ng-bind="size.height"  class="ng-binding"></span> 
+						    			</span>
+						    		</label>
+						    		<input type="range" ng-model="size.height" ng-change="changeSize()" min="110" max="500" step="10" style="width: 140px" class="ng-valid ng-dirty">
+						    	</div>						    	
+						    </div>
+						    <div ng-show="!showClassProperties.condition">
+						    	<p style="padding: 10px 0px 0px 40px;" ng-bind="showClassProperties.message"></p>
+						    </div>
+						    					        
+						</accordion-group>
+						<accordion-group is-open="statusAttr">
+						    <accordion-heading>						    
+						        Атрибуты 
+						        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': statusAttr, 'glyphicon-chevron-right': !statusAttr}">						        	
+						        </i>
+						    </accordion-heading>
+						    <div ng-show="showClassProperties.condition">
+						    	<a class="btn btn-link" ng-click="addAtr()">
+						    		<i class="icon-plus-sign">						    			
+						    		</i> Добавить атрибут
+						    	</a>						    	
+							    <div class="attributeContainer" ng-repeat="attribute in classAttributes" style="margin: 5px 0px 5px 0px;">
+								    <a class="btn btn-link" ng-click="deleteAtr($index)">
+								    	<i class="icon-trash"></i>		    	
+								    </a>
+							        <input type="className" ng-model="attribute.name" ng-change="changeClassDetails()" class="form-control myInput" id="className">
+							        <select class="selectType" data-ng-model="attribute.type" ng-options="type for type in types" ng-change="changeClassDetails()">
+	                					<option  value="">
+	                						Выбрать тип
+	                					</option>
+	            					</select>
+								</div>			
+						    </div>
+						     <div ng-show="!showClassProperties.condition">
+						    	<p style="padding: 10px 0px 0px 40px;" ng-bind="showClassProperties.message"></p>
+						    </div>
+						</accordion-group>
+						<accordion-group is-open="statusMethod">
+						    <accordion-heading>
+						        Методы 
+						        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': statusMethod, 'glyphicon-chevron-right': !statusMethod}"></i>
+						    </accordion-heading>
+						    <div ng-show="showClassProperties.condition">
+						    	<a class="btn btn-link" ng-click="addMethod()">
+						    		<i class="icon-plus-sign">						    			
+						    		</i> 
+						    		Добавить метод
+						    	</a>						    	
+							    <div class="methodsContainer" ng-repeat="method in classMethods" style="  margin: 5px 0px 5px 0px;">
+							    	<a class="btn btn-link" ng-click="deleteMethod($index)">
+								    	<i class="icon-trash"></i>		    	
+								    </a>								    
+							        <input type="className" class="form-control myInput" ng-model="method.name" id="className" ng-change="changeClassDetails()">
+									<select class="selectType" data-ng-model="method.type" ng-options="methodType for methodType in methodTypes" ng-change="changeClassDetails()">
+	                					<option  value="">
+	                						Выбрать тип
+	                					</option>
+	            					</select>
+	            					<a class="btn btn-link" ng-click="addParam($index)" style="  margin: 0px 0px 0px 20px;">
+							    		<i class="icon-plus-sign">						    			
+							    		</i> 
+							    		Добавить параметр
+						    		</a>									
+									<div class="paramContainer" ng-repeat="parameter in method.parameters" style="  margin: 5px 0px 0px 20px;">
+										<a class="btn btn-link" ng-click="deleteParam($index, $parent)">
+								    		<i class="icon-trash"></i>		    	
+								    	</a>										
+							        	<input type="className" ng-model="parameter.name" class="form-control myInput" id="className" ng-change="changeClassDetails()">
+										<select class="selectType" data-ng-model="parameter.type" ng-options="type for type in typesWithClasses" ng-change="changeClassDetails()">
+		                					<option  value="">
+		                						Выбрать тип
+		                					</option>
+	            						</select>
+									</div>
+								</div>
+						    </div>
+						    <div ng-show="!showClassProperties.condition">
+						    	<p style="padding: 10px 0px 0px 40px;" ng-bind="showClassProperties.message"></p>
+						    </div>
+						</accordion-group>				    			   
+	  				</accordion>
+        		</div>
+        	</div>
+        </div>
+    	<hr />
+	    <div id="footer">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-6">
+	                    <p class="text-muted">
+	                    	Выполнил: Глухов Роман гр. AT5-14-1M
+	                    </p>
+	                </div>
+	                <div class="col-md-6">	                    
+	                </div>
+	            </div>
+	        </div>
+	    </div>	
+		<script src="js/app/controllers.js"></script>
+		<script src="js/app/services.js"></script>
+		<script src="js/app/joint.shapes.uml.js"></script>
+    </body>
+</html>
